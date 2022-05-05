@@ -2,37 +2,18 @@
 # EventBridge
 #-------------------------------------
 
+data "template_file" "event_pattern_codepipeline" {
+  template = "${file("event_pattern_codepipeline.json")}"
+  vars = {
+    resources_var = "${aws_codecommit_repository.dbt_ecs_tutorial_codecommit_repos.arn}"
+  }
+}
+
 resource "aws_cloudwatch_event_rule" "events_rule_codepipeline" {
   name        = var.events_rule_codepipeline_name
   description = "CodePipeline CloudWatch Events"
 
-  event_pattern = <<EOF
-{
-  "source": [
-    "aws.codecommit"
-  ],
-  "detail-type": [
-    "CodeCommit Repository State Change"
-  ],
-  "resources": [
-    {
-      ${aws_codecommit_repository.dbt_ecs_tutorial_codecommit_repos.arn}
-    }
-  ],
-  "detail": {
-    "event": [
-      "referenceCreated",
-      "referenceUpdated"
-    ],
-    "referenceType": [
-      "branch"
-    ],
-    "referenceName": [
-      "main"
-    ]
-  }
-}
-EOF
+  event_pattern = "${data.template_file.event_pattern_codepipeline.rendered}"
 }
 
 resource "aws_cloudwatch_event_target" "events_target_codepipeline" {
