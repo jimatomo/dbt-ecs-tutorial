@@ -34,6 +34,12 @@ variable "codebuild_log_stream" {
   default     = "dbt_container_build"
 }
 
+variable "dbt_ecs_codebuild_001_role_arn" {
+  description = "CodeBuild Role Arn (This variable will be overwritten)"
+  type = string
+  default = ""
+}
+
 ######################################
 # codecommit.tf
 ######################################
@@ -73,6 +79,12 @@ variable "codepipeline_source_stage_action_name" {
   description = "[Source] CodePipeline Stage Action Name for dbt tutorial"
   type        = string
   default     = "dbt_ecs_tutorial_source_stage_action"
+}
+
+variable "dbt_ecs_codepipeline_001_role_arn" {
+  description = "CodePipeline Role Arn (This variable will be overwritten)"
+  type = string
+  default = ""
 }
 
 ######################################
@@ -195,6 +207,11 @@ variable "events_target_id_codepipeline" {
   default     = "dbt_ecs_tutorial_events_target_codepipeline_001"
 }
 
+variable "dbt_ecs_eventbridge_codepipeline_001_role_arn" {
+  description = "EventBridge Role Arn (This variable will be overwritten)"
+  type = string
+  default = ""
+}
 
 ######################################
 # s3.tf

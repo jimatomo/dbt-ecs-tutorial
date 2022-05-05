@@ -14,7 +14,7 @@ resource "aws_codebuild_project" "dbt_ecs_tutorial_codebuild" {
   name          = var.codebuild_project_name
   description   = "dbt_ecs_tutorial_codebuild_project"
   build_timeout = var.codebuild_build_timeout
-  service_role  = var.dbt_ecs_task_001_role_arn
+  service_role  = var.dbt_ecs_codebuild_001_role_arn
 
   artifacts {
     type = "NO_ARTIFACTS"
