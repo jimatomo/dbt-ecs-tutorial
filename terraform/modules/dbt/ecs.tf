@@ -60,6 +60,8 @@ resource "aws_ecs_task_definition" "dbt_ecs_tutorial_task_run_001" {
   network_mode             = "awsvpc"
   cpu                      = var.dbt_ecs_tutorial_task_run_001_cpu
   memory                   = var.dbt_ecs_tutorial_task_run_001_memory
+  task_role_arn            = var.dbt_ecs_task_001_role_arn
+  execution_role_arn       = var.dbt_ecs_task_exec_001_role_arn
   container_definitions    = "${data.template_file.container_definitions_run.rendered}"
 
   runtime_platform {
