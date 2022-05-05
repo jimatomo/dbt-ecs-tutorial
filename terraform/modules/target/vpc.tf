@@ -65,12 +65,14 @@ resource "aws_route_table" "private_route_table" {
 #-----------------------------------------
 
 resource "aws_route_table_association" "route_table_association_public" {
+  count          = var.vpc_public_subnet_count
+  
   route_table_id = aws_route_table.public_route_table.id
-  subnet_id      = aws_subnet.target_public_subnet.id
+  subnet_id      = aws_subnet.target_public_subnet[count.index].id
 }
 
 resource "aws_route_table_association" "route_table_association_private" {
-  count = var.vpc_private_subnet_count
+  count          = var.vpc_private_subnet_count
 
   route_table_id = aws_route_table.private_route_table[count.index].id
   subnet_id      = aws_subnet.target_private_subnet[count.index].id
