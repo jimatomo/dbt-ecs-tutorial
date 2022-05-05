@@ -149,7 +149,7 @@ variable "dbt_ecs_task_001_role_arn" {
   default = ""
 }
 
-variable "dbt_ecs_tack_exec_001_role_arn" {
+variable "dbt_ecs_task_exec_001_role_arn" {
   description = "Task Role Arn (This variable will be overwritten)"
   type = string
   default = ""
