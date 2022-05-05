@@ -81,6 +81,18 @@ variable "codepipeline_source_stage_action_name" {
   default     = "dbt_ecs_tutorial_source_stage_action"
 }
 
+variable "codepipeline_build_stage_name" {
+  description = "[Source] CodePipeline Stage Name for dbt tutorial"
+  type        = string
+  default     = "dbt_ecs_tutorial_build_stage"
+}
+
+variable "codepipeline_build_stage_action_name" {
+  description = "[Source] CodePipeline Stage Action Name for dbt tutorial"
+  type        = string
+  default     = "dbt_ecs_tutorial_build_stage_action"
+}
+
 variable "dbt_ecs_codepipeline_001_role_arn" {
   description = "CodePipeline Role Arn (This variable will be overwritten)"
   type = string
