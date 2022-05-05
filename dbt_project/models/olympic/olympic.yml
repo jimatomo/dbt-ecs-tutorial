@@ -1,0 +1,183 @@
+version: 2
+
+sources:
+  - name: olympic
+    schema: public
+    description: |
+      Kaggleのオリンピックのデータセット
+      [120 years of Olympic history: athletes and results](https://www.kaggle.com/heesoo37/120-years-of-olympic-history-athletes-and-results/home)
+      This is a historical dataset on the modern Olympic Games, including all the Games from Athens 1896 to Rio 2016.
+      (近代オリンピックに関する歴史的なデータセットで、1896年のアテネ大会から2016年のリオ大会までの全大会を収録しています。)
+      Note that the Winter and Summer Games were held in the same year up until 1992. After that, they staggered them such that Winter Games occur on a four year cycle starting with 1994, then Summer in 1996, then Winter in 1998, and so on. A common mistake people make when analyzing this data is to assume that the Summer and Winter Games have always been staggered.
+      (ちなみに、1992年までは冬季大会と夏季大会は同じ年に開催されていました。その後、1994年から4年周期で冬季大会が開催され、1996年に夏季大会、1998年に冬季大会が開催される、というように時期をずらして開催されるようになりました。このデータを分析する際によく間違われるのが、「夏季大会と冬季大会は常にずらして開催されている」と思い込んでしまうことです。)
+    tables:
+      - name: athlete_events
+        descriptions: |
+          The file athlete_events.csv contains 271116 rows and 15 columns. Each row corresponds to an individual athlete competing in an individual Olympic event (athlete-events)
+          （ファイル athlete_events.csv は、271116 行と 15 列を含みます。各行は、個々のオリンピック競技に出場する個々のアスリートに対応しています（athlete-events）。）
+        columns:
+          - name: ID
+            description: Unique number for each athlete（それぞれのアスリート固有の数字）
+          - name: Name
+            description: Athlete's name（アスリートの名前）
+          - name: Sex
+            description: M or F（M：男性、F：女性）
+          - name: Age
+            description: Integer（年齢）
+          - name: Height
+            description: In centimeters（単位はcm）
+          - name: Weight
+            description: In kilograms（単位はkg）
+          - name: Team
+            description: Team name（チーム名）
+          - name: NOC
+            description: National Olympic Committee 3-letter code（国際オリンピック委員会の3文字のコード）
+          - name: Games
+            description: Year and season（開催年と季節）
+          - name: Year
+            description: Integer（開催年）
+          - name: Season
+            description: Summer or Winter（夏季か冬季か）
+          - name: City
+            description: Host city（開催都市）
+          - name: Sport
+            description: Sport（競技）
+          - name: Event
+            description: Event（種目）
+          - name: Medal
+            description: Gold, Silver, Bronze, or null（金か銀か銅かnullか）
+ 
+      - name: noc_regions
+        descriptions: |
+          NOCの略称を補足するテーブル
+        columns:
+          - name: NOC
+            description: National Olympic Committee 3-letter code（国際オリンピック委員会の3文字のコード）
+          - name: region
+            description: Country name (matches with regions in map_data("world"))（国名）
+          - name: notes
+            description: 注釈/備考
+
+models:
+  - name: stg_athlete_events_regions
+    description: athlete_eventsとnoc_regionsをINNER JOINした中間テーブル
+    Columns:
+      - name: ID
+        description: Unique number for each athlete（それぞれのアスリート固有の数字）
+      - name: Name
+        description: Athlete's name（アスリートの名前）
+      - name: Sex
+        description: M or F（M：男性、F：女性）
+      - name: Age
+        description: Integer（年齢）
+      - name: Height
+        description: In centimeters（単位はcm）
+      - name: Weight
+        description: In kilograms（単位はkg）
+      - name: Team
+        description: Team name（チーム名）
+      - name: NOC
+        description: National Olympic Committee 3-letter code（国際オリンピック委員会の3文字のコード）
+      - name: Games
+        description: Year and season（開催年と季節）
+      - name: Year
+        description: Integer（開催年）
+      - name: Season
+        description: Summer or Winter（夏季か冬季か）
+      - name: City
+        description: Host city（開催都市）
+      - name: Sport
+        description: Sport（競技）
+      - name: Event
+        description: Event（種目）
+      - name: Medal
+        description: Gold, Silver, Bronze, or null（金か銀か銅かnullか）
+      - name: region
+        description: Country name (matches with regions in map_data("world"))（国名）
+      - name: notes
+        description: 注釈/備考
+
+  - name: mart_gold_medal
+    description: |
+      金メダルを取得した選手のみ抽出したビュー
+      （Columnsは stg_athlete_events_regions を参照）
+
+  - name: mart_gold_medal_age_notnull
+    description: |
+      金メダルを取得した選手のみ抽出したビューからAge列がnullのものを除いたビュー
+      （Columnsは stg_athlete_events_regions を参照）
+
+  - name: mart_gold_medal_over_50
+    description: |
+      50歳以上で金メダルを取得したアスリートを抽出したビュー
+      特に競技/分野（Sport/Disciplines）に注目したい
+      （Columnsは stg_athlete_events_regions を参照）
+
+  - name: mart_total_gold_medal_by_region
+    description: 国別の金メダル獲得総数のビュー
+    columns:
+      - name: region
+        description: 国名
+      - name: total_gold_medal_count
+        description: 各国が獲得した金メダルの合計
+
+  - name: mart_gold_medal_by_usa
+    description: |
+      アメリカ（USA）の金メダルを獲得したアスリートを抽出したビュー
+      （Columnsは stg_athlete_events_regions を参照）
+
+  - name: mart_total_gold_medal_event_by_usa
+    description: |
+      アメリカが獲得した種目別の金メダル獲得総数のビュー
+      アメリカが得意な種目が一目でわかるが、果たして団体種目はどうなっているのだろうか
+      （バスケットボールが一番多く取っているが、チームメンバー分がカウントされているのでは…？）
+    columns:
+      - name: event
+        description: 種目
+      - name: total_gold_medal_count
+        description: 各種目で獲得した金メダルの合計
+
+  - name: mart_gold_medal_basketball_by_usa
+    description: |
+      アメリカ（USA）のバスケットボールで金メダルを獲得したアスリートを抽出したビュー
+      （バスケットボールが一番多かったのはやはり重複してチームメンバーをカウントしていた空だとわかる）
+      （Columnsは stg_athlete_events_regions を参照）
+
+  - name: mart_gold_medal_basketball_by_usa_distinct
+    description: |
+      アメリカ（USA）のバスケットボールで金メダルを獲得したアスリートを抽出したビュー
+      ただし、各開催年で代表的な一人以外のみ抽出する。その年の中のアスリートのIDが一番若いものが抽出対象。
+      （Columnsは stg_athlete_events_regions を参照）
+
+  - name: mart_not_null_gold_medal
+    description: |
+      金メダルを獲得したアスリートの中で体重と身長のデータがnullでないものを抽出したビュー
+      （Columnsは stg_athlete_events_regions を参照）
+
+  - name: mart_gold_medal_over_160kg
+    description: |
+      金メダルを獲得したアスリートの中で体重が160kg越えものを抽出したビュー
+      （競技の内訳をみてみると納得）
+      （Columnsは stg_athlete_events_regions を参照）
+
+  - name: mart_summer_men
+    description: |
+      夏季オリンピックに出場した男性アスリートを抽出したビュー
+      （Columnsは stg_athlete_events_regions を参照）
+
+  - name: mart_summer_wemen
+    description: |
+      夏季オリンピックに出場した女性アスリートを抽出したビュー
+      （Columnsは stg_athlete_events_regions を参照）
+
+
+
+
+
+
+
+
+
+
+
+
