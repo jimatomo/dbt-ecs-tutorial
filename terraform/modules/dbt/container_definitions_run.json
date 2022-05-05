@@ -1,6 +1,8 @@
-{
-  "name": "${name_var}",
-  "image": "${image_var}",
-  "essential": true,
-  "command": "${command_var}"
-}
+[
+  {
+    "name": "${name_var}",
+    "image": "${image_var}",
+    "essential": true,
+    "command": "${command_var}"
+  }
+]

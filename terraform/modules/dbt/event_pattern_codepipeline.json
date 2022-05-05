@@ -6,9 +6,7 @@
     "CodeCommit Repository State Change"
   ],
   "resources": [
-    {
-      "${resources_var}"
-    }
+    "${resources_var}"
   ],
   "detail": {
     "event": [
