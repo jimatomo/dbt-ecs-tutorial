@@ -137,6 +137,12 @@ variable "rds_instance_username" {
   default     = "postgres"
 }
 
+variable "rds_instance_id" {
+  description = "RDS instance's identifier"
+  type        = string
+  default     = "dbt-ecs-tutorial"
+}
+
 #-------------------------------------
 # Parameter Group
 #-------------------------------------
