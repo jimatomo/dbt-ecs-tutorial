@@ -9,7 +9,7 @@ terraform {
   required_version = ">= 0.14.9"
 
   backend "s3" {
-    bucket         = "${var.tf_backend_s3}"
+    bucket         = "tf_backend_s3_will_be_overwritten"
     dynamodb_table = "terraform-state-lock-for-dbt-ecs-tutorial"
     key            = "terraform.tfstate"
     region         = "ap-northeast-1" # S3やDynamoDBが作成されているリージョン

@@ -14,13 +14,7 @@ aws cloudformation deploy --stack-name ${CFN_STACK_NAME} --template-file ${CFN_T
     S3BucketName=${TF_S3_BUCKET_NAME}
 
 # Write Variable for Terraform
-echo Write Variable for Terraform ...
-cat << EOS > ../terraform/projects/backend.tf
-variable "tf_backend_s3" {
-  description = "S3 bucket name for Terraform Backend"
-  type        = string
-  default     = "${TF_S3_BUCKET_NAME}"
-}
-EOS
+echo overWrite Variable for Terraform Backend ...
+sed -i -e "s/tf_backend_s3_will_be_overwritten/$TF_S3_BUCKET_NAME/g" ../terraform/projects/main.tf
 
 echo success
