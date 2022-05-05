@@ -35,9 +35,9 @@ output "dbt_ecs_task_001_role_arn" {
   description = "Role for dbt_ecs_task_001"
 }
 
-output "dbt_ecs_tack_exec_001_role_arn" {
-  value       =  aws_iam_role.dbt_ecs_tack_exec_001.arn
-  description = "Role for dbt_ecs_tack_exec_001"
+output "dbt_ecs_task_exec_001_role_arn" {
+  value       =  aws_iam_role.dbt_ecs_task_exec_001.arn
+  description = "Role for dbt_ecs_task_exec_001"
 }
 
 output "dbt_ecs_stepfunctions_001_role_arn" {
