@@ -24,6 +24,7 @@ provider "aws" {
 module "iam" {
   source = "../modules/iam"
 
+  # outputは確実にvarとして定義する（output名と同じ名前で参照している）
   dbt_codepipeline_arn                 = module.dbt.dbt_codepipeline_arn
   iam_dbt_ecs_001_resource_bucket_name = module.dbt.dbt_docs_hosting_s3_bucket_name
 

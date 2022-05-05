@@ -146,6 +146,12 @@ variable "iam_policy_path_dbt_ecs_codepipeline_001" {
   default = "/"
 }
 
+variable "dbt_codepipeline_arn" {
+  description = "CodePipeline Arn (This variable will be overwritten)"
+  type = string
+  default = ""
+}
+
 #-------------------------------------
 # dbt_ecs_eventbrige_001
 variable "iam_policy_name_dbt_ecs_eventbridge_codepipeline_001" {
