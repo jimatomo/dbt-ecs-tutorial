@@ -3,6 +3,6 @@
     "name": "${name_var}",
     "image": "${image_var}",
     "essential": true,
-    "command": "${command_var}"
+    "command": ["${command_var}"]
   }
 ]
