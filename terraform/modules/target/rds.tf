@@ -29,8 +29,8 @@ resource "aws_db_instance" "dwh" {
   instance_class         = var.rds_instance_class
   username               = var.rds_instance_username
   password               = random_password.rds_instance_password.result
-  parameter_group_name   = aws_db_parameter_group.dwh_parameter_group
-  db_subnet_group_name   = aws_db_subnet_group.dwh_subnet_group
+  parameter_group_name   = aws_db_parameter_group.dwh_parameter_group.id
+  db_subnet_group_name   = aws_db_subnet_group.dwh_subnet_group.id
   skip_final_snapshot    = true
-  vpc_security_group_ids = aws_security_group.dwh
+  vpc_security_group_ids = [aws_security_group.dwh.id]
 }
