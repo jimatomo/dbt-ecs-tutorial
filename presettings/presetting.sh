@@ -2,7 +2,7 @@
 set -e
 
 CFN_TEMPLATE=terraform_backend_s3.yml
-CFN_STACK_NAME=terraform_backend_s3
+CFN_STACK_NAME=terraform-backend-s3
 
 # Read variables
 read -p "Enter unique S3 bucket name for Terraform Backend: " TF_S3_BUCKET_NAME

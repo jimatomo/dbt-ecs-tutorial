@@ -27,12 +27,11 @@ terraform version
 git clone https://github.com/jimatomo/dbt-ecs-tutorial.git
 
 # presetting (Create Terraform Backend)
-cd presetting
-chmod +x presetting.sh
+cd dbt-ecs-tutorial/presettings/
 ./presetting.sh
 
 # terraform apply
-cd ../terraform
+cd ../terraform/projects
 terraform init
 terraform plan
 terraform apply

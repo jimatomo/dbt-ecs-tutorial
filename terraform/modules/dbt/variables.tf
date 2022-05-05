@@ -75,18 +75,6 @@ variable "codepipeline_source_stage_action_name" {
   default     = "dbt_ecs_tutorial_source_stage_action"
 }
 
-variable "codepipeline_build_stage_name" {
-  description = "[Build] CodePipeline Stage Name for dbt tutorial"
-  type        = string
-  default     = "dbt_ecs_tutorial_build_stage"
-}
-
-variable "codepipeline_build_stage_action_name" {
-  description = "[Build] CodePipeline Stage Action Name for dbt tutorial"
-  type        = string
-  default     = "dbt_ecs_tutorial_build_stage_action"
-}
-
 ######################################
 # ecs.tf
 ######################################
@@ -100,7 +88,6 @@ variable "dbt_ecs_tutorial_ecs_cluster_name" {
   type        = string
   default     = "dbt_ecs_tutorial_ecs_cluster_001"
 }
-
 
 #-------------------------------------
 # ECS Task
@@ -132,6 +119,18 @@ variable "dbt_ecs_tutorial_task_docs_001_command" {
   default     = "bash,-c,./docs.sh"
 }
 
+variable "dbt_ecs_task_001_role_arn" {
+  description = "Task Role Arn (This variable will be overwritten)"
+  type = string
+  default = ""
+}
+
+variable "dbt_ecs_tack_exec_001_role_arn" {
+  description = "Task Role Arn (This variable will be overwritten)"
+  type = string
+  default = ""
+}
+
 #-------------------------------------
 # dbt docs task
 variable "dbt_ecs_tutorial_task_run_001_family" {
@@ -158,6 +157,7 @@ variable "dbt_ecs_tutorial_task_run_001_command" {
   default     = "bash,-c,./run.sh"
 }
 
+
 #-------------------------------------
 # ECR
 #-------------------------------------
@@ -173,6 +173,7 @@ variable "dbt_ecs_tutorial_ecr_002_name" {
   type        = string
   default     = "dbt_ecs_tutorial_ecr"
 }
+
 
 ######################################
 # eventbridge.tf
@@ -195,7 +196,6 @@ variable "events_target_id_codepipeline" {
 }
 
 
-
 ######################################
 # s3.tf
 ######################################
@@ -207,7 +207,7 @@ variable "events_target_id_codepipeline" {
 variable "s3_bucket_codepipeline_artifact_prefix" {
   description = "CodePipeline Artifact Store S3 Bucket prefix for dbt tutorial"
   type        = string
-  default     = "codepipeline-${data.aws_region.current.name}-"
+  default     = "codepipeline-ap-northeast-1-"
 }
 
 variable "s3_bucket_docs_prefix" {

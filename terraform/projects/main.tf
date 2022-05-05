@@ -24,7 +24,8 @@ provider "aws" {
 module "iam" {
   source = "../modules/iam"
 
-  dbt_codepipeline_arn = module.dbt.dbt_codepipeline_arn
+  dbt_codepipeline_arn                 = module.dbt.dbt_codepipeline_arn
+  iam_dbt_ecs_001_resource_bucket_name = module.dbt.dbt_docs_hosting_s3_bucket_name
 
   # variablesを上書きする
 }

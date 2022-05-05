@@ -19,9 +19,9 @@ variable "iam_dbt_ecs_001_resource_parameter_prefix" {
 }
 
 variable "iam_dbt_ecs_001_resource_bucket_name" {
-  description = "bucket name"
+  description = "bucket name (This variable will be overwritten)"
   type = string
-  default = "dbt-ecs-tutorial-${data.aws_caller_identity.current.account_id}"
+  default = "dbt-ecs-tutorial*"
 }
 
 variable "iam_policy_name_dbt_ecs_task_001" {

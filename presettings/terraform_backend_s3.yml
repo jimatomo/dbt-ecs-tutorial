@@ -41,8 +41,8 @@ Resources:
           AttributeName: "LockID"
           KeyType: "HASH"
 
-outputs:
-  S3Bucket:
+Outputs:
+  TFBackendS3Bucket:
     Value: !Ref S3Bucket
-  DynamoDBTable:
-    Value: !Ref !Ref DynamoDBTable
+  TFBackendDynamoDBTable:
+    Value: !Ref DynamoDBTable
