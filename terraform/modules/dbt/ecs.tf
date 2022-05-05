@@ -25,7 +25,7 @@ resource "aws_ecs_task_definition" "dbt_ecs_tutorial_task_docs_001" {
   cpu                      = var.dbt_ecs_tutorial_task_docs_001_cpu
   memory                   = var.dbt_ecs_tutorial_task_docs_001_memory
   task_role_arn            = var.dbt_ecs_task_001_role_arn
-  execution_role_arn       = var.dbt_ecs_tack_exec_001_role_arn
+  execution_role_arn       = var.dbt_ecs_task_exec_001_role_arn
   container_definitions    = <<TASK_DEFINITION
 [
   {

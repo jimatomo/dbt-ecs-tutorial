@@ -43,7 +43,7 @@ module "dbt" {
 
   # outputは確実にvarとして定義する（output名と同じ名前で参照している）
   dbt_ecs_task_001_role_arn                     = module.iam.dbt_ecs_task_001_role_arn
-  dbt_ecs_tack_exec_001_role_arn                = module.iam.dbt_ecs_tack_exec_001_role_arn
+  dbt_ecs_task_exec_001_role_arn                = module.iam.dbt_ecs_task_exec_001_role_arn
   dbt_ecs_codebuild_001_role_arn                = module.iam.dbt_ecs_codebuild_001_role_arn
   dbt_ecs_codepipeline_001_role_arn             = module.iam.dbt_ecs_codepipeline_001_role_arn
   dbt_ecs_eventbridge_codepipeline_001_role_arn = module.iam.dbt_ecs_eventbridge_codepipeline_001_role_arn
