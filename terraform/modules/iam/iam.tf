@@ -49,7 +49,7 @@ resource "aws_iam_policy" "dbt_ecs_task_001" {
 #-------------------------------------
 # dbt_ecs_exec_001
 # Attach to ECS Task Execution Role
-data "aws_iam_policy_document" "dbt_ecs_tack_exec_001" {
+data "aws_iam_policy_document" "dbt_ecs_task_exec_001" {
   statement {
     sid       = "ecs task execution"
     effect    = "Allow"
@@ -67,12 +67,12 @@ data "aws_iam_policy_document" "dbt_ecs_tack_exec_001" {
   }
 }
 
-resource "aws_iam_policy" "dbt_ecs_tack_exec_001" {
-  name        = var.iam_policy_name_dbt_ecs_tack_exec_001
-  path        = var.iam_policy_path_dbt_ecs_tack_exec_001
+resource "aws_iam_policy" "dbt_ecs_task_exec_001" {
+  name        = var.iam_policy_name_dbt_ecs_task_exec_001
+  path        = var.iam_policy_path_dbt_ecs_task_exec_001
   description = "dbt ecs task execution policy"
 
-  policy = data.aws_iam_policy_document.dbt_ecs_tack_exec_001
+  policy = data.aws_iam_policy_document.dbt_ecs_task_exec_001
 }
 
 #-------------------------------------
@@ -463,7 +463,7 @@ data "aws_iam_policy_document" "dbt_ecs_task_exec_001_assume_role_policy" {
   }
 }
 
-resource "aws_iam_role" "dbt_ecs_tack_exec_001" {
+resource "aws_iam_role" "dbt_ecs_task_exec_001" {
   name = var.iam_role_name_dbt_ecs_task_exec_001
   path = var.iam_role_path_dbt_ecs_task_exec_001
   assume_role_policy = data.aws_iam_policy_document.dbt_ecs_task_exec_001_assume_role_policy

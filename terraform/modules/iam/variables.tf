@@ -44,7 +44,7 @@ variable "dbt_ecs_task_prefix" {
   default = "dbt-ecs-task"
 }
 
-variable "iam_policy_name_dbt_ecs_tack_exec_001" {
+variable "iam_policy_name_dbt_ecs_task_exec_001" {
   description = "iam policy name of dbt ecs task execution"
   type = string
   default = "dbt-ecs-tutorial-ecs-task-exec-001"
