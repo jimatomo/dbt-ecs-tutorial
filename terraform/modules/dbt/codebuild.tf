@@ -24,7 +24,7 @@ resource "aws_codebuild_project" "dbt_ecs_tutorial_codebuild" {
     compute_type                = "BUILD_GENERAL1_SMALL"
     image                       = "aws/codebuild/standard:5.0"
     type                        = "LINUX_CONTAINER"
-    image_pull_credentials_type = "SERVICE_ROLE"
+    image_pull_credentials_type = "CODEBUILD"
     privileged_mode             = "true"
 
     # 環境変数があればここに入れるが
