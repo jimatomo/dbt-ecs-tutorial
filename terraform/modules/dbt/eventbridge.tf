@@ -3,7 +3,7 @@
 #-------------------------------------
 
 data "template_file" "event_pattern_codepipeline" {
-  template = "${file("event_pattern_codepipeline.json")}"
+  template = "${file("${path.module}/event_pattern_codepipeline.json")}"
   vars = {
     resources_var = "${aws_codecommit_repository.dbt_ecs_tutorial_codecommit_repos.arn}"
   }
