@@ -43,7 +43,7 @@ resource "aws_iam_policy" "dbt_ecs_task_001" {
   path        = var.iam_policy_path_dbt_ecs_task_001
   description = "dbt ecs task policy"
 
-  policy = data.aws_iam_policy_document.dbt_ecs_task_001
+  policy = data.aws_iam_policy_document.dbt_ecs_task_001.json
 }
 
 #-------------------------------------
@@ -72,7 +72,7 @@ resource "aws_iam_policy" "dbt_ecs_task_exec_001" {
   path        = var.iam_policy_path_dbt_ecs_task_exec_001
   description = "dbt ecs task execution policy"
 
-  policy = data.aws_iam_policy_document.dbt_ecs_task_exec_001
+  policy = data.aws_iam_policy_document.dbt_ecs_task_exec_001.json
 }
 
 #-------------------------------------
@@ -161,7 +161,7 @@ resource "aws_iam_policy" "dbt_ecs_stepfunctions_001_ecs" {
   path        = var.iam_policy_path_dbt_ecs_stepfunctions_001_ecs
   description = "dbt step functions policy (ECS)"
 
-  policy = data.aws_iam_policy_document.dbt_ecs_stepfunctions_001_ecs
+  policy = data.aws_iam_policy_document.dbt_ecs_stepfunctions_001_ecs.json
 }
 
 resource "aws_iam_policy" "dbt_ecs_stepfunctions_001_sns" {
@@ -169,7 +169,7 @@ resource "aws_iam_policy" "dbt_ecs_stepfunctions_001_sns" {
   path        = var.iam_policy_path_dbt_ecs_stepfunctions_001_sns
   description = "dbt step functions policy (SNS)"
 
-  policy = data.aws_iam_policy_document.dbt_ecs_stepfunctions_001_sns
+  policy = data.aws_iam_policy_document.dbt_ecs_stepfunctions_001_sns.json
 }
 
 resource "aws_iam_policy" "dbt_ecs_stepfunctions_001_xray" {
@@ -177,7 +177,7 @@ resource "aws_iam_policy" "dbt_ecs_stepfunctions_001_xray" {
   path        = var.iam_policy_path_dbt_ecs_stepfunctions_001_xray
   description = "dbt step functions policy (Xray)"
 
-  policy = data.aws_iam_policy_document.dbt_ecs_stepfunctions_001_xray
+  policy = data.aws_iam_policy_document.dbt_ecs_stepfunctions_001_xray.json
 }
 
 resource "aws_iam_policy" "dbt_ecs_stepfunctions_001_passrole" {
@@ -185,7 +185,7 @@ resource "aws_iam_policy" "dbt_ecs_stepfunctions_001_passrole" {
   path        = var.iam_policy_path_dbt_ecs_stepfunctions_001_passrole
   description = "dbt step functions policy (PassRole)"
 
-  policy = data.aws_iam_policy_document.dbt_ecs_stepfunctions_001_passrole
+  policy = data.aws_iam_policy_document.dbt_ecs_stepfunctions_001_passrole.json
 }
 
 #-------------------------------------
@@ -264,7 +264,7 @@ resource "aws_iam_policy" "dbt_ecs_codebuild_001" {
   path        = var.iam_policy_path_dbt_ecs_codebuild_001
   description = "dbt CodeBuild policy"
 
-  policy = data.aws_iam_policy_document.dbt_ecs_codebuild_001
+  policy = data.aws_iam_policy_document.dbt_ecs_codebuild_001.json
 }
 
 #-------------------------------------
@@ -394,7 +394,7 @@ resource "aws_iam_policy" "dbt_ecs_codepipeline_001" {
   path        = var.iam_policy_path_dbt_ecs_codepipeline_001
   description = "dbt CodePipeline policy"
 
-  policy = data.aws_iam_policy_document.dbt_ecs_codepipeline_001
+  policy = data.aws_iam_policy_document.dbt_ecs_codepipeline_001.json
 }
 
 
@@ -420,7 +420,7 @@ resource "aws_iam_policy" "dbt_ecs_eventbridge_codepipeline_001" {
   path        = var.iam_policy_path_dbt_ecs_eventbridge_codepipeline_001
   description = "dbt eventbridge for CodePipeline policy"
 
-  policy = data.aws_iam_policy_document.dbt_ecs_eventbridge_codepipeline_001
+  policy = data.aws_iam_policy_document.dbt_ecs_eventbridge_codepipeline_001.json
 }
 
 
@@ -444,7 +444,7 @@ data "aws_iam_policy_document" "dbt_ecs_task_001_assume_role_policy" {
 resource "aws_iam_role" "dbt_ecs_task_001" {
   name = var.iam_role_name_dbt_ecs_task_001
   path = var.iam_role_path_dbt_ecs_task_001
-  assume_role_policy = data.aws_iam_policy_document.dbt_ecs_task_001_assume_role_policy
+  assume_role_policy = data.aws_iam_policy_document.dbt_ecs_task_001_assume_role_policy.json
   managed_policy_arns = [
     aws_iam_policy.dbt_ecs_task_001.arn
   ]
@@ -466,7 +466,7 @@ data "aws_iam_policy_document" "dbt_ecs_task_exec_001_assume_role_policy" {
 resource "aws_iam_role" "dbt_ecs_task_exec_001" {
   name = var.iam_role_name_dbt_ecs_task_exec_001
   path = var.iam_role_path_dbt_ecs_task_exec_001
-  assume_role_policy = data.aws_iam_policy_document.dbt_ecs_task_exec_001_assume_role_policy
+  assume_role_policy = data.aws_iam_policy_document.dbt_ecs_task_exec_001_assume_role_policy.json
   managed_policy_arns = [
     aws_iam_policy.dbt_ecs_task_exec_001.arn
   ]
@@ -488,7 +488,7 @@ data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_assume_role_policy" {
 resource "aws_iam_role" "dbt_ecs_stepfunctions_001" {
   name = var.iam_role_name_dbt_ecs_stepfunctions_001
   path = var.iam_role_path_dbt_ecs_stepfunctions_001
-  assume_role_policy = data.aws_iam_policy_document.dbt_ecs_stepfunctions_001_assume_role_policy
+  assume_role_policy = data.aws_iam_policy_document.dbt_ecs_stepfunctions_001_assume_role_policy.json
   managed_policy_arns = [
     aws_iam_policy.dbt_ecs_stepfunctions_001_ecs.arn,
     aws_iam_policy.dbt_ecs_stepfunctions_001_sns.arn,
@@ -513,7 +513,7 @@ data "aws_iam_policy_document" "dbt_ecs_codebuild_001_assume_role_policy" {
 resource "aws_iam_role" "dbt_ecs_codebuild_001" {
   name = var.iam_role_name_dbt_ecs_codebuild_001
   path = var.iam_role_path_dbt_ecs_codebuild_001
-  assume_role_policy = data.aws_iam_policy_document.dbt_ecs_codebuild_001_assume_role_policy
+  assume_role_policy = data.aws_iam_policy_document.dbt_ecs_codebuild_001_assume_role_policy.json
   managed_policy_arns = [
     aws_iam_policy.dbt_ecs_codebuild_001.arn
   ]
@@ -535,7 +535,7 @@ data "aws_iam_policy_document" "dbt_ecs_codepipeline_001_assume_role_policy" {
 resource "aws_iam_role" "dbt_ecs_codepipeline_001" {
   name = var.iam_role_name_dbt_ecs_codepipeline_001
   path = var.iam_role_path_dbt_ecs_codepipeline_001
-  assume_role_policy = data.aws_iam_policy_document.dbt_ecs_codepipeline_001_assume_role_policy
+  assume_role_policy = data.aws_iam_policy_document.dbt_ecs_codepipeline_001_assume_role_policy.json
   managed_policy_arns = [
     aws_iam_policy.dbt_ecs_codepipeline_001.arn
   ]
@@ -557,7 +557,7 @@ data "aws_iam_policy_document" "dbt_ecs_eventbridge_codepipeline_001_assume_role
 resource "aws_iam_role" "dbt_ecs_eventbridge_codepipeline_001" {
   name = var.iam_role_name_dbt_ecs_eventbridge_codepipeline_001
   path = var.iam_role_path_dbt_ecs_eventbridge_codepipeline_001
-  assume_role_policy = data.aws_iam_policy_document.dbt_ecs_eventbridge_codepipeline_001_assume_role_policy
+  assume_role_policy = data.aws_iam_policy_document.dbt_ecs_eventbridge_codepipeline_001_assume_role_policy.json
   managed_policy_arns = [
     aws_iam_policy.dbt_ecs_eventbridge_codepipeline_001.arn
   ]
