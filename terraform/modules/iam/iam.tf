@@ -459,7 +459,7 @@ data "aws_iam_policy_document" "dbt_ecs_task_exec_001_assume_role_policy" {
     actions = ["sts:AssumeRole"]
     principals {
       type        = "Service"
-      identifiers = ["ecs-task.amazonaws.com"]
+      identifiers = ["ecs-tasks.amazonaws.com"]
     }
   }
 }
