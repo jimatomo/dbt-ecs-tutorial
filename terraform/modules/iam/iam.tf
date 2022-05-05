@@ -15,7 +15,7 @@ data "aws_region" "current" {}
 # Attach to ECS Task Role
 data "aws_iam_policy_document" "dbt_ecs_task_001" {
   statement {
-    sid       = "ssm parameter store"
+    sid       = "SSMPrameterStore"
     effect    = "Allow"
     actions   = [
       "ssm:GetParameter"
@@ -25,7 +25,7 @@ data "aws_iam_policy_document" "dbt_ecs_task_001" {
     ]
   }
   statement {
-    sid       = "s3 bucket for documents"
+    sid       = "S3BucketForDocuments"
     effect    = "Allow"
     actions   = [
       "s3:ListBucket",
@@ -51,7 +51,7 @@ resource "aws_iam_policy" "dbt_ecs_task_001" {
 # Attach to ECS Task Execution Role
 data "aws_iam_policy_document" "dbt_ecs_task_exec_001" {
   statement {
-    sid       = "ecs task execution"
+    sid       = "ECSTaskExecution"
     effect    = "Allow"
     actions   = [
       "ecr:GetAuthorizationToken",
@@ -80,7 +80,7 @@ resource "aws_iam_policy" "dbt_ecs_task_exec_001" {
 # Attach to Step Functions
 data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_ecs" {
   statement {
-    sid       = "Run ESC Task"
+    sid       = "RunESCTask"
     effect    = "Allow"
     actions   = [
       "ecs:RunTask"
@@ -90,7 +90,7 @@ data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_ecs" {
     ]
   }
   statement {
-    sid       = "Stop ECS Task"
+    sid       = "StopECSTask"
     effect    = "Allow"
     actions   = [
       "ecs:StopTask",
@@ -101,7 +101,7 @@ data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_ecs" {
     ]
   }
   statement {
-    sid       = "Events Rule"
+    sid       = "EventsRule"
     effect    = "Allow"
     actions   = [
       "events:PutTargets",
@@ -116,7 +116,7 @@ data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_ecs" {
 
 data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_sns" {
   statement {
-    sid       = "sns publish"
+    sid       = "SNSPublish"
     effect    = "Allow"
     actions   = [
       "sns:Publish"
@@ -129,7 +129,7 @@ data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_sns" {
 
 data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_xray" {
   statement {
-    sid       = "xray access"
+    sid       = "XrayAccess"
     effect    = "Allow"
     actions   = [
       "xray:PutTraceSegments",
@@ -145,7 +145,7 @@ data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_xray" {
 
 data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_passrole" {
   statement {
-    sid       = "pass role"
+    sid       = "PassRole"
     effect    = "Allow"
     actions   = [
       "iam:PassRole"
@@ -193,7 +193,7 @@ resource "aws_iam_policy" "dbt_ecs_stepfunctions_001_passrole" {
 # Attach to CodeBuild
 data "aws_iam_policy_document" "dbt_ecs_codebuild_001" {
   statement {
-    sid       = "codebuild access to ECR"
+    sid       = "CodeBuildAccessToECR"
     effect    = "Allow"
     actions   = [
       "ecr:BatchGetImage",
@@ -209,7 +209,7 @@ data "aws_iam_policy_document" "dbt_ecs_codebuild_001" {
     ]
   }
   statement {
-    sid       = "CloudWatch Logs"
+    sid       = "CloudWatchLogs"
     effect    = "Allow"
     actions   = [
       "logs:CreateLogGroup",
@@ -221,7 +221,7 @@ data "aws_iam_policy_document" "dbt_ecs_codebuild_001" {
     ]
   }
   statement {
-    sid       = "s3"
+    sid       = "S3"
     effect    = "Allow"
     actions   = [
       "s3:PutObject",
@@ -235,7 +235,7 @@ data "aws_iam_policy_document" "dbt_ecs_codebuild_001" {
     ]
   }
   statement {
-    sid       = "codecommit"
+    sid       = "CodeCommit"
     effect    = "Allow"
     actions   = [
       "codecommit:GitPull"
@@ -245,7 +245,7 @@ data "aws_iam_policy_document" "dbt_ecs_codebuild_001" {
     ]
   }
   statement {
-    sid       = "codebuild"
+    sid       = "CodeBuild"
     effect    = "Allow"
     actions   = [
       "codebuild:CreateReportGroup",
@@ -404,7 +404,7 @@ resource "aws_iam_policy" "dbt_ecs_codepipeline_001" {
 
 data "aws_iam_policy_document" "dbt_ecs_eventbridge_codepipeline_001" {
   statement {
-    sid       = "codepipeline_exec"
+    sid       = "CodePipelineExec"
     effect    = "Allow"
     actions   = [
       "codepipeline:StartPipelineExecution"

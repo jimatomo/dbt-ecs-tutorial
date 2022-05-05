@@ -116,13 +116,13 @@ variable "rds_instance_storage_size" {
 variable "rds_instance_engine" {
   description = "RDS instance's engine"
   type        = string
-  default     = "PostgreSQL"
+  default     = "postgres"
 }
 
 variable "rds_instance_engine_version" {
   description = "RDS instance's engine version"
   type        = string
-  default     = "13.4"
+  default     = "13.6"
 }
 
 variable "rds_instance_class" {
