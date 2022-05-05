@@ -112,7 +112,7 @@ resource "aws_vpc_endpoint" "gateway_endpoint_s3" {
 
 # VPC Endpoint route (public)
 resource "aws_vpc_endpoint_route_table_association" "route_to_gateway_s3_public" {
-  route_table_id  = aws_vpc.target_vpc.id
+  route_table_id  = aws_route_table.public_route_table.id
   vpc_endpoint_id = aws_vpc_endpoint.gateway_endpoint_s3.id
 }
 
