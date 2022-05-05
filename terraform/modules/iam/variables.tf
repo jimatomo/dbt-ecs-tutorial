@@ -186,7 +186,7 @@ variable "iam_role_name_dbt_ecs_task_exec_001" {
   default = "dbt-ecs-tutorial-dbt-ecs-task-exec-001"
 }
 
-variable "iam_role_path_dbt_ecs_task_001" {
+variable "iam_role_path_dbt_ecs_task_exec_001" {
   description = "iam role path of ECS Task Execution"
   type = string
   default = "/"
