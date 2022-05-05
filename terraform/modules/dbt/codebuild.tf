@@ -30,12 +30,12 @@ resource "aws_codebuild_project" "dbt_ecs_tutorial_codebuild" {
     # 環境変数があればここに入れるが
     environment_variable {
       name  = "AWS_DEFAULT_REGION"
-      value = "${data.aws_region.current}"
+      value = "${data.aws_region.current.name}"
     }
 
     environment_variable {
       name  = "AWS_ACCOUNT_ID"
-      value = "${data.aws_caller_identity.current}"
+      value = "${data.aws_caller_identity.current.account_id}"
     }
 
     environment_variable {
