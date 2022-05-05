@@ -18,7 +18,11 @@ resource "aws_security_group" "dwh" {
     to_port         = 0
     protocol        = "-1"
     cidr_blocks     = ["0.0.0.0/0"]
-  }  
+  }
+
+  tags = {
+    Name = var.rds_instance_security_group_name
+  }
 }
 
 resource "aws_security_group" "dbt" {
@@ -32,5 +36,9 @@ resource "aws_security_group" "dbt" {
     protocol        = "-1"
     cidr_blocks     = ["0.0.0.0/0"]
   }  
+
+  tags = {
+    Name = var.dbt_container_security_group_name
+  }
 }
 
