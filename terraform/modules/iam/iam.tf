@@ -16,7 +16,7 @@ data "aws_region" "current" {}
 data "aws_iam_policy_document" "dbt_ecs_task_001" {
   statement {
     sid       = "ssm parameter store"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "ssm:GetParameter"
     ]
@@ -26,7 +26,7 @@ data "aws_iam_policy_document" "dbt_ecs_task_001" {
   }
   statement {
     sid       = "s3 bucket for documents"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "s3:ListBucket",
       "s3:PutObject"
@@ -52,7 +52,7 @@ resource "aws_iam_policy" "dbt_ecs_task_001" {
 data "aws_iam_policy_document" "dbt_ecs_tack_exec_001" {
   statement {
     sid       = "ecs task execution"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "ecr:GetAuthorizationToken",
       "ecr:BatchCheckLayerAvailability",
@@ -81,7 +81,7 @@ resource "aws_iam_policy" "dbt_ecs_tack_exec_001" {
 data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_ecs" {
   statement {
     sid       = "Run ESC Task"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "ecs:RunTask"
     ]
@@ -91,7 +91,7 @@ data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_ecs" {
   }
   statement {
     sid       = "Stop ECS Task"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "ecs:StopTask",
       "ecs:DescribeTasks"
@@ -102,7 +102,7 @@ data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_ecs" {
   }
   statement {
     sid       = "Events Rule"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "events:PutTargets",
       "events:PutRule",
@@ -117,7 +117,7 @@ data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_ecs" {
 data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_sns" {
   statement {
     sid       = "sns publish"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "sns:Publish"
     ]
@@ -130,7 +130,7 @@ data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_sns" {
 data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_xray" {
   statement {
     sid       = "xray access"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "xray:PutTraceSegments",
       "xray:PutTelemetryRecords",
@@ -146,7 +146,7 @@ data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_xray" {
 data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_passrole" {
   statement {
     sid       = "pass role"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "iam:PassRole"
     ]
@@ -194,7 +194,7 @@ resource "aws_iam_policy" "dbt_ecs_stepfunctions_001_passrole" {
 data "aws_iam_policy_document" "dbt_ecs_codebuild_001" {
   statement {
     sid       = "codebuild access to ECR"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "ecr:BatchGetImage",
       "ecr:BatchCheckLayerAvailability",
@@ -210,7 +210,7 @@ data "aws_iam_policy_document" "dbt_ecs_codebuild_001" {
   }
   statement {
     sid       = "CloudWatch Logs"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "logs:CreateLogGroup",
       "logs:CreateLogStream",
@@ -222,7 +222,7 @@ data "aws_iam_policy_document" "dbt_ecs_codebuild_001" {
   }
   statement {
     sid       = "s3"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "s3:PutObject",
       "s3:GetObject",
@@ -236,7 +236,7 @@ data "aws_iam_policy_document" "dbt_ecs_codebuild_001" {
   }
   statement {
     sid       = "codecommit"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "codecommit:GitPull"
     ]
@@ -246,7 +246,7 @@ data "aws_iam_policy_document" "dbt_ecs_codebuild_001" {
   }
   statement {
     sid       = "codebuild"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "codebuild:CreateReportGroup",
       "codebuild:CreateReport",
@@ -273,7 +273,7 @@ resource "aws_iam_policy" "dbt_ecs_codebuild_001" {
 data "aws_iam_policy_document" "dbt_ecs_codepipeline_001" {
   statement {
     sid       = "PassRole"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "iam:PassRole"
     ]
@@ -293,7 +293,7 @@ data "aws_iam_policy_document" "dbt_ecs_codepipeline_001" {
   }
   statement {
     sid       = "CodeCommit"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "codecommit:CancelUploadArchive",
       "codecommit:GetBranch",
@@ -308,7 +308,7 @@ data "aws_iam_policy_document" "dbt_ecs_codepipeline_001" {
   }
   statement {
     sid       = "CodeDeploy"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "codedeploy:CreateDeployment",
       "codedeploy:GetApplication",
@@ -323,7 +323,7 @@ data "aws_iam_policy_document" "dbt_ecs_codepipeline_001" {
   }
   statement {
     sid       = "resources"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "elasticbeanstalk:*",
       "ec2:*",
@@ -343,7 +343,7 @@ data "aws_iam_policy_document" "dbt_ecs_codepipeline_001" {
   }
   statement {
     sid       = "lambda"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "lambda:InvokeFunction",
       "lambda:ListFunctions"
@@ -354,7 +354,7 @@ data "aws_iam_policy_document" "dbt_ecs_codepipeline_001" {
   }
   statement {
     sid       = "codebuild"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "codebuild:BatchGetBuilds",
       "codebuild:StartBuild",
@@ -367,7 +367,7 @@ data "aws_iam_policy_document" "dbt_ecs_codepipeline_001" {
   }
   statement {
     sid       = "ecr"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "ecr:DescribeImages"
     ]
@@ -377,7 +377,7 @@ data "aws_iam_policy_document" "dbt_ecs_codepipeline_001" {
   }
   statement {
     sid       = "states"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "states:DescribeExecution",
       "states:DescribeStateMachine",
@@ -405,7 +405,7 @@ resource "aws_iam_policy" "dbt_ecs_codepipeline_001" {
 data "aws_iam_policy_document" "dbt_ecs_eventbridge_codepipeline_001" {
   statement {
     sid       = "codepipeline_exec"
-    Effect    = "Allow"
+    effect    = "Allow"
     actions   = [
       "codepipeline:StartPipelineExecution"
     ]
@@ -432,7 +432,7 @@ resource "aws_iam_policy" "dbt_ecs_eventbridge_codepipeline_001" {
 # dbt_ecs_task_001
 data "aws_iam_policy_document" "dbt_ecs_task_001_assume_role_policy" {
   statement {
-    Effect  = "Allow"
+    effect  = "Allow"
     actions = ["sts:AssumeRole"]
     principals {
       type        = "Service"
@@ -454,7 +454,7 @@ resource "aws_iam_role" "dbt_ecs_task_001" {
 # dbt_ecs_task_exec_001
 data "aws_iam_policy_document" "dbt_ecs_task_exec_001_assume_role_policy" {
   statement {
-    Effect  = "Allow"
+    effect  = "Allow"
     actions = ["sts:AssumeRole"]
     principals {
       type        = "Service"
@@ -476,7 +476,7 @@ resource "aws_iam_role" "dbt_ecs_tack_exec_001" {
 # dbt_ecs_stepfunctions_001
 data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_assume_role_policy" {
   statement {
-    Effect  = "Allow"
+    effect  = "Allow"
     actions = ["sts:AssumeRole"]
     principals {
       type        = "Service"
@@ -501,7 +501,7 @@ resource "aws_iam_role" "dbt_ecs_stepfunctions_001" {
 # dbt_ecs_codebuild_001
 data "aws_iam_policy_document" "dbt_ecs_codebuild_001_assume_role_policy" {
   statement {
-    Effect  = "Allow"
+    effect  = "Allow"
     actions = ["sts:AssumeRole"]
     principals {
       type        = "Service"
@@ -523,7 +523,7 @@ resource "aws_iam_role" "dbt_ecs_codebuild_001" {
 # dbt_ecs_codepipeline_001
 data "aws_iam_policy_document" "dbt_ecs_codepipeline_001_assume_role_policy" {
   statement {
-    Effect  = "Allow"
+    effect  = "Allow"
     actions = ["sts:AssumeRole"]
     principals {
       type        = "Service"
@@ -545,7 +545,7 @@ resource "aws_iam_role" "dbt_ecs_codepipeline_001" {
 # dbt_ecs_eventbrige_001
 data "aws_iam_policy_document" "dbt_ecs_eventbridge_codepipeline_001_assume_role_policy" {
   statement {
-    Effect  = "Allow"
+    effect  = "Allow"
     actions = ["sts:AssumeRole"]
     principals {
       type        = "Service"
