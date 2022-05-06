@@ -217,7 +217,7 @@ data "aws_iam_policy_document" "dbt_ecs_codebuild_001" {
       "logs:PutLogEvents"
     ]
     resources = [
-      "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:/aws/codebuild/*"
+      "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/codebuild/*"
     ]
   }
   statement {
