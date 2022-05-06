@@ -202,7 +202,8 @@ data "aws_iam_policy_document" "dbt_ecs_codebuild_001" {
       "ecr:GetDownloadUrlForLayer",
       "ecr:InitiateLayerUpload",
       "ecr:PutImage",
-      "ecr:UploadLayerPart"
+      "ecr:UploadLayerPart",
+      "ecr:GetAuthorizationToken"
     ]
     resources = [
       "*"
