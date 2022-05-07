@@ -161,7 +161,8 @@ data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_passrole" {
       "iam:PassRole"
     ]
     resources = [
-      "${aws_iam_role.dbt_ecs_task_001.arn}" # TODO ロールのARNを入れる
+      "${aws_iam_role.dbt_ecs_task_001.arn}",
+      "${aws_iam_role.dbt_ecs_task_exec_001.arn}"
     ]
   }
 }
