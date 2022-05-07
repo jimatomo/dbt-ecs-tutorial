@@ -41,8 +41,8 @@ terraform apply
 
 ## Usage
 Please Read Zenn book  
-[Zenn book](https://zenn.dev/jimatomo)  
- (I'm writing now ...)  
+[Zenn book](https://zenn.dev/jimatomo/books/d49ddf2e18ae8e/viewer)  
+(Sorry, this book is written in Japanese)
 
 <br>
 

@@ -12,7 +12,7 @@ sources:
       (ちなみに、1992年までは冬季大会と夏季大会は同じ年に開催されていました。その後、1994年から4年周期で冬季大会が開催され、1996年に夏季大会、1998年に冬季大会が開催される、というように時期をずらして開催されるようになりました。このデータを分析する際によく間違われるのが、「夏季大会と冬季大会は常にずらして開催されている」と思い込んでしまうことです。)
     tables:
       - name: athlete_events
-        descriptions: |
+        description: |
           The file athlete_events.csv contains 271116 rows and 15 columns. Each row corresponds to an individual athlete competing in an individual Olympic event (athlete-events)
           （ファイル athlete_events.csv は、271116 行と 15 列を含みます。各行は、個々のオリンピック競技に出場する個々のアスリートに対応しています（athlete-events）。）
         columns:
@@ -48,7 +48,7 @@ sources:
             description: Gold, Silver, Bronze, or null（金か銀か銅かnullか）
  
       - name: noc_regions
-        descriptions: |
+        description: |
           NOCの略称を補足するテーブル
         columns:
           - name: NOC
@@ -61,7 +61,7 @@ sources:
 models:
   - name: stg_athlete_events_regions
     description: athlete_eventsとnoc_regionsをINNER JOINした中間テーブル
-    Columns:
+    columns:
       - name: ID
         description: Unique number for each athlete（それぞれのアスリート固有の数字）
       - name: Name
