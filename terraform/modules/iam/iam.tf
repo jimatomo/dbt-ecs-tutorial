@@ -270,6 +270,16 @@ data "aws_iam_policy_document" "dbt_ecs_codebuild_001" {
       "arn:aws:codebuild:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:report-group/*"
     ]
   }
+    statement {
+    sid       = "StepFunctions"
+    effect    = "Allow"
+    actions   = [
+      "states:StartExecution"
+    ]
+    resources = [
+      "arn:aws:states:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:stateMachine:*"
+    ]
+  }
 }
 
 resource "aws_iam_policy" "dbt_ecs_codebuild_001" {
