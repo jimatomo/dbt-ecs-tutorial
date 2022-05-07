@@ -21,8 +21,9 @@ resource "aws_ecs_cluster_capacity_providers" "dbt_ecs_tutorial_ecs_cluster_prov
 data "template_file" "container_definitions_docs" {
   template = "${file("${path.module}/container_definitions_docs.json")}"
   vars = {
-    name_var = "${var.dbt_ecs_tutorial_task_docs_001_family}_container"
-    image_var = "${aws_ecr_repository.dbt_ecs_tutorial_ecr_002.repository_url}:latest"
+    name_var      = "${var.dbt_ecs_tutorial_task_docs_001_family}_container"
+    image_var     = "${aws_ecr_repository.dbt_ecs_tutorial_ecr_002.repository_url}:latest"
+    log_group_Var = "${var.dbt_ecs_tutorial_task_docs_001_family}"
   }
 }
 
@@ -47,8 +48,9 @@ resource "aws_ecs_task_definition" "dbt_ecs_tutorial_task_docs_001" {
 data "template_file" "container_definitions_run" {
   template = "${file("${path.module}/container_definitions_docs.json")}"
   vars = {
-    name_var = "${var.dbt_ecs_tutorial_task_run_001_family}_container"
-    image_var = "${aws_ecr_repository.dbt_ecs_tutorial_ecr_002.repository_url}:latest"
+    name_var      = "${var.dbt_ecs_tutorial_task_run_001_family}_container"
+    image_var     = "${aws_ecr_repository.dbt_ecs_tutorial_ecr_002.repository_url}:latest"
+    log_group_Var = "${var.dbt_ecs_tutorial_task_run_001_family}"
   }
 }
 
