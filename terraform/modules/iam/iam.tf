@@ -36,6 +36,16 @@ data "aws_iam_policy_document" "dbt_ecs_task_001" {
       "arn:aws:s3:::${var.iam_dbt_ecs_001_resource_bucket_name}/*"
     ]
   }
+    statement {
+    sid       = "KMSDecrypt"
+    effect    = "Allow"
+    actions   = [
+      "kms:Decrypt"
+    ]
+    resources = [
+      "*"
+    ]
+  }
 }
 
 resource "aws_iam_policy" "dbt_ecs_task_001" {
@@ -86,7 +96,7 @@ data "aws_iam_policy_document" "dbt_ecs_stepfunctions_001_ecs" {
       "ecs:RunTask"
     ]
     resources = [
-      "arn:aws:ecs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:task-definition/${var.dbt_ecs_task_prefix}"
+      "arn:aws:ecs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:task-definition/${var.dbt_ecs_task_prefix}*"
     ]
   }
   statement {

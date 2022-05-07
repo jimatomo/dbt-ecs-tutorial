@@ -41,7 +41,7 @@ variable "iam_policy_path_dbt_ecs_task_001" {
 variable "dbt_ecs_task_prefix" {
   description = "dbt ecs task name prefix"
   type = string
-  default = "dbt-ecs-task"
+  default = "dbt_ecs_tutorial"
 }
 
 variable "iam_policy_name_dbt_ecs_task_exec_001" {

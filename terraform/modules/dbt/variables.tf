@@ -137,12 +137,6 @@ variable "dbt_ecs_tutorial_task_docs_001_memory" {
   default     = 512
 }
 
-variable "dbt_ecs_tutorial_task_docs_001_command" {
-  description = "[dbt docs] ECS Container Definition Command for dbt tutorial"
-  type        = string
-  default     = "bash,-c,./docs.sh"
-}
-
 variable "dbt_ecs_task_001_role_arn" {
   description = "Task Role Arn (This variable will be overwritten)"
   type = string
@@ -156,7 +150,7 @@ variable "dbt_ecs_task_exec_001_role_arn" {
 }
 
 #-------------------------------------
-# dbt docs task
+# dbt run task
 variable "dbt_ecs_tutorial_task_run_001_family" {
   description = "[dbt run] ECS Task Definition Family Name for dbt tutorial"
   type        = string
@@ -174,13 +168,6 @@ variable "dbt_ecs_tutorial_task_run_001_memory" {
   type        = number
   default     = 512
 }
-
-variable "dbt_ecs_tutorial_task_run_001_command" {
-  description = "[dbt run] ECS Container Definition Command for dbt tutorial"
-  type        = string
-  default     = "bash,-c,./run.sh"
-}
-
 
 #-------------------------------------
 # ECR

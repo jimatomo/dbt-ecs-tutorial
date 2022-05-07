@@ -3,6 +3,14 @@
     "name": "${name_var}",
     "image": "${image_var}",
     "essential": true,
-    "command": ["${command_var}"]
+    "command": ["bash","-c","./run.sh"],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/${name_var}",
+        "awslogs-region": "ap-northeast-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
   }
 ]
