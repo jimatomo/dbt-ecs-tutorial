@@ -231,3 +231,14 @@ variable "s3_bucket_docs_prefix" {
   type        = string
   default     = "dbt-ecs-tutorial-"
 }
+
+#-------------------------------------
+# CloudWatch Logs
+#-------------------------------------
+
+variable "cloudwatch_logs_group_retention_task" {
+  description = "ECS CloudWatch Logs Group name for dbt tutorial"
+  type        = number
+  default     = 1
+}
+
