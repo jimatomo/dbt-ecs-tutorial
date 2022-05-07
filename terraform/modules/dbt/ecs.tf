@@ -46,7 +46,7 @@ resource "aws_ecs_task_definition" "dbt_ecs_tutorial_task_docs_001" {
 #-------------------------------------
 # dbt run task
 data "template_file" "container_definitions_run" {
-  template = "${file("${path.module}/container_definitions_docs.json")}"
+  template = "${file("${path.module}/container_definitions_run.json")}"
   vars = {
     name_var      = "${var.dbt_ecs_tutorial_task_run_001_family}_container"
     image_var     = "${aws_ecr_repository.dbt_ecs_tutorial_ecr_002.repository_url}:latest"
